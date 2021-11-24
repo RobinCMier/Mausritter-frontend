@@ -1,10 +1,13 @@
 //tool imports
-import { useDispatch, useSelect } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 //component and action imports
 import { login } from "../../store/user/actions";
+import { selectToken } from "../../store/user/selectors";
 
 /*TO DO
 V- create store for user
@@ -16,15 +19,18 @@ V- dispatch info to store user slice
 */
 //default function
 export default function Login() {
+  const navigate = useNavigate;
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const token = useSelector(selectToken);
+  console.log("token is ", token);
 
   useEffect(() => {
     if (token !== null) {
-      //do the navigation thing
+      return navigate("/");
     }
-  }, [token]); //add navigation here
+  }, [token]); //add navigation here?
 
   function submitForm(event) {
     console.log("hi from submitForm");
