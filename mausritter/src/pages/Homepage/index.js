@@ -15,6 +15,7 @@ the buttons are the coluor indicated in DB
 */
 //default function
 export default function Homepage() {
+  //add a token? if no redirect to login page conditional. Think of a way to make this reusable: app.js makes sign up form a problem
   const userFull = useSelector(selectUserFull);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -23,6 +24,7 @@ export default function Homepage() {
   const sheets = userFull.sheets;
 
   console.log("this is userFull ", userFull);
+  console.log("this is sheets: ", sheets);
 
   return (
     <div>
@@ -38,8 +40,15 @@ export default function Homepage() {
             <div>
               {sheets.map((sheet) => {
                 return (
-                  <div key={sheet.i}>
-                    <button>{sheet.charName}</button>
+                  <div key={sheet.id}>
+                    <button
+                      style={{
+                        backgroundColor: `${sheet.charColor}`,
+                        fontSize: 30,
+                      }}
+                    >
+                      {sheet.charName}
+                    </button>
                   </div>
                 );
               })}
