@@ -19,23 +19,28 @@ V- dispatch info to store user slice
 */
 //default function
 export default function Login() {
-  const navigate = useNavigate;
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const token = useSelector(selectToken);
-  console.log("token is ", token);
 
-  useEffect(() => {
-    if (token !== null) {
-      return navigate("/");
-    }
-  }, [token]); //add navigation here?
+  // useEffect(() => {
+  //   if (token !== null) {
+  //     navigate("/");
+  //   }
+  // }, [token]); //add navigation here?
+  // useEffect(() => {
+  //   if (token !== null) {
+  //     history.push("/");
+  //   }
+  // }, [token, history]);
 
   function submitForm(event) {
+    const navigate = useNavigate;
     console.log("hi from submitForm");
     event.preventDefault();
     dispatch(login(email, password));
+    console.log("token is ", token);
   }
 
   return (
@@ -70,6 +75,10 @@ export default function Login() {
         <Link to="/signup">
           {" "}
           <button>Click here to sign up</button>{" "}
+        </Link>
+        <Link to="/">
+          {" "}
+          <button>TEMP SHORTCUT TO HOMEPAGE</button>{" "}
         </Link>
       </div>
     </div>
