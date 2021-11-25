@@ -1,11 +1,12 @@
 //tool imports
 import { Link } from "react-router-dom";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useState } from "react";
 //component imports
 import { selectToken } from "../../store/user/selectors";
 import { selectSheetByName } from "../../store/sheets/selectors";
+import CharacterCard from "../../components/CharacterCard";
 
 //
 /*TO DO
@@ -16,9 +17,11 @@ V- create a selector to fetch the details of one specific sheet,
 - display the data. 
 - add a button to edit this sheet.
 - go to backend to make endpoint to edit sheet.
+edit toggles betwen read-only true or false.
 */
 //default function
 export default function Charactersheet() {
+  const [readOnly, setReadOnly] = useState(true);
   const navigate = useNavigate();
   const token = useSelector(selectToken);
   if (token === null) {
@@ -26,9 +29,15 @@ export default function Charactersheet() {
   }
   const params = useParams();
   const charName = params.name;
-  const sheet = useSelector(selectSheetByName(charName));
-  console.log("character name is: ", charName);
-  console.log("sheet is: ", sheet);
+  const [sheet, setSheet] = useState(useSelector(selectSheetByName(charName))); //object
+  // console.log("character name is: ", charName);
+  // console.log("sheet is: ", sheet);
+  const onChangeHandler = (event) => {
+    console.log("This is the event: ", event.target);
+    setSheet({ ...sheet, [event.target.name]: event.target.value });
+  };
+  //create function to toggle between readonly true and false. When set back on true, dispatch action to save to DB
+
   return (
     <div>
       <div>
@@ -37,6 +46,12 @@ export default function Charactersheet() {
             Back to homepage
           </button>
         </Link>
+        <button onClick={() => setReadOnly(!readOnly)}>Edit your sheet!</button>
+        <CharacterCard
+          readOnly={readOnly}
+          sheet={sheet}
+          onChangeHandler={onChangeHandler}
+        />
       </div>
     </div>
   );
