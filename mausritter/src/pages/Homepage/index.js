@@ -1,6 +1,7 @@
 //tool imports
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router";
 //comp and action imports
 import { fetchAll } from "../../store/sheets/actions";
 import { selectUserFull } from "../../store/sheets/selectors";
@@ -17,14 +18,17 @@ the buttons are the coluor indicated in DB
 //default function
 export default function Homepage() {
   const token = useSelector(selectToken);
-
-  //add a token? if no redirect to login page conditional. Think of a way to make this reusable: app.js makes sign up form a problem
+  const navigate = useNavigate();
   const userFull = useSelector(selectUserFull);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchAll);
   }, [dispatch]);
   const sheets = userFull.sheets;
+  //recycle this for every page:
+  if (token === null) {
+    navigate("/login");
+  }
 
   // console.log("this is userFull ", userFull);
   // console.log("this is sheets: ", sheets);

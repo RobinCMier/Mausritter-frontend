@@ -72,10 +72,6 @@ export default function Login() {
           {" "}
           <button>Click here to sign up</button>{" "}
         </Link>
-        <Link to="/">
-          {" "}
-          <button>TEMP SHORTCUT TO HOMEPAGE</button>{" "}
-        </Link>
       </div>
     </div>
   );

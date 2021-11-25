@@ -15,7 +15,6 @@ export const logOut = () => ({ type: "user/logOut" });
 
 export const login = (email, password) => {
   return async (dispatch, getState) => {
-    // dispatch(appLoading());
     console.log(
       "You're calling the login dispatch and your arguments are: ",
       email,
@@ -29,17 +28,32 @@ export const login = (email, password) => {
       console.log("This is response.data ", response.data);
 
       dispatch(loginSuccess(response.data));
-      //   dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
-      //   dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
-        // dispatch(setMessage("danger", true, error.response.data.message));
       } else {
         console.log(error.message);
-        // dispatch(setMessage("danger", true, error.message));
       }
-      //   dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const signUp = (name, email, password) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.post(`${apiUrl}/auth/signup`, {
+        name,
+        email,
+        password,
+      });
+      console.log("response.data is ", response.data);
+      dispatch(loginSuccess(response.data));
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+      } else {
+        console.log(error.message);
+      }
     }
   };
 };
