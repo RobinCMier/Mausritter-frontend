@@ -9,6 +9,7 @@ const loginSuccess = (userWithToken) => {
     payload: userWithToken,
   };
 };
+export const logOut = () => ({ type: "user/logOut" });
 
 //THUNKS etc
 

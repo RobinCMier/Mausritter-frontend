@@ -30,12 +30,7 @@ export default function Login() {
     if (token !== null) {
       navigate("/");
     }
-  }, [token]); //add navigation here?
-  // useEffect(() => {
-  //   if (token !== null) {
-  //     history.push("/");
-  //   }
-  // }, [token, history]);
+  }, [token]);
 
   function submitForm(event) {
     console.log("hi from submitForm");

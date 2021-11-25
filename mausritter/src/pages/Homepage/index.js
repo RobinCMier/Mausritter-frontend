@@ -4,17 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 //comp and action imports
 import { fetchAll } from "../../store/sheets/actions";
 import { selectUserFull } from "../../store/sheets/selectors";
+import { selectToken } from "../../store/user/selectors";
 /*TO DO
 create store for sheets
 create a thunk first fetching the userId with getState from user reducer
 then make thunk request all the sheets from this user
 dispatch action to put this in state
-useSelector to display the names of the sheets as button links
+useSelector to display the names of the sheets as b utton links
 the buttons link to charactersheet page
 the buttons are the coluor indicated in DB
 */
 //default function
 export default function Homepage() {
+  const token = useSelector(selectToken);
+
   //add a token? if no redirect to login page conditional. Think of a way to make this reusable: app.js makes sign up form a problem
   const userFull = useSelector(selectUserFull);
   const dispatch = useDispatch();
