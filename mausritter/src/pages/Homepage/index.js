@@ -28,7 +28,7 @@ export default function Homepage() {
   const sheets = userFull.sheets;
   //recycle this for every page:
   if (token === null) {
-    navigate("/login");
+    navigate("/");
   }
 
   // console.log("this is userFull ", userFull);

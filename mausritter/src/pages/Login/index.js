@@ -28,15 +28,15 @@ export default function Login() {
 
   useEffect(() => {
     if (token !== null) {
-      navigate("/");
+      navigate("/home");
     }
   }, [token]);
 
   function submitForm(event) {
-    console.log("hi from submitForm");
+    // console.log("hi from submitForm");
     event.preventDefault();
     dispatch(login(email, password));
-    console.log("token is ", token);
+    // console.log("token is ", token);
   }
 
   return (

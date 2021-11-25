@@ -41,9 +41,9 @@ function App() {
           <></>
         )}
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<Login />} />
           <Route path="/sheet/:name" element={<Charactersheet />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/home" element={<Homepage />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
       </div>
