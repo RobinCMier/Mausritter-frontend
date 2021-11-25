@@ -23,8 +23,8 @@ export default function Homepage() {
   }, [dispatch]);
   const sheets = userFull.sheets;
 
-  console.log("this is userFull ", userFull);
-  console.log("this is sheets: ", sheets);
+  // console.log("this is userFull ", userFull);
+  // console.log("this is sheets: ", sheets);
 
   return (
     <div>

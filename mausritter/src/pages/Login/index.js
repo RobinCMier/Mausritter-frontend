@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
+
 //component and action imports
 import { login } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
@@ -19,16 +20,17 @@ V- dispatch info to store user slice
 */
 //default function
 export default function Login() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const token = useSelector(selectToken);
 
-  // useEffect(() => {
-  //   if (token !== null) {
-  //     navigate("/");
-  //   }
-  // }, [token]); //add navigation here?
+  useEffect(() => {
+    if (token !== null) {
+      navigate("/");
+    }
+  }, [token]); //add navigation here?
   // useEffect(() => {
   //   if (token !== null) {
   //     history.push("/");
@@ -36,7 +38,6 @@ export default function Login() {
   // }, [token, history]);
 
   function submitForm(event) {
-    const navigate = useNavigate;
     console.log("hi from submitForm");
     event.preventDefault();
     dispatch(login(email, password));

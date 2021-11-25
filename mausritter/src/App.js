@@ -15,10 +15,10 @@ function App() {
       <div>
         <h1>HI THERE FROM APP.JS</h1>
         <Routes>
-          <Route exact path="/" element={<Homepage />} />
-          <Route exact path="/sheet" element={<Charactersheet />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signup" element={<Signup />} />
+          <Route path="/" element={<Homepage />} />
+          <Route path="/sheet" element={<Charactersheet />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </div>
     </div>
