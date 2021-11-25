@@ -42,7 +42,7 @@ function App() {
         )}
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/sheet" element={<Charactersheet />} />
+          <Route path="/sheet/:name" element={<Charactersheet />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>

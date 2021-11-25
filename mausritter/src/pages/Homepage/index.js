@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 //comp and action imports
 import { fetchAll } from "../../store/sheets/actions";
 import { selectUserFull } from "../../store/sheets/selectors";
@@ -48,14 +49,16 @@ export default function Homepage() {
               {sheets.map((sheet) => {
                 return (
                   <div key={sheet.id}>
-                    <button
-                      style={{
-                        backgroundColor: `${sheet.charColor}`,
-                        fontSize: 30,
-                      }}
-                    >
-                      {sheet.charName}
-                    </button>
+                    <Link to={`/sheet/${sheet.charName}`}>
+                      <button
+                        style={{
+                          backgroundColor: `${sheet.charColor}`,
+                          fontSize: 30,
+                        }}
+                      >
+                        {sheet.charName}
+                      </button>
+                    </Link>
                   </div>
                 );
               })}
