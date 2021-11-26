@@ -1,6 +1,6 @@
 //tool imports
 import { Routes, Route } from "react-router";
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -14,11 +14,15 @@ import CreateCharacter from "./pages/Createcharacter";
 //actions and selectors
 import { selectToken } from "./store/user/selectors";
 import { logOut } from "./store/user/actions";
+import { bootstrapLogin } from "./store/user/actions";
 
 //function
 function App() {
   const token = useSelector(selectToken);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(bootstrapLogin());
+  }, [dispatch]);
   /*
   there needs to be a useEffect that upon rerendering checks for the token that should 
   be in local storage, then use that token to fetch data of user from store. 

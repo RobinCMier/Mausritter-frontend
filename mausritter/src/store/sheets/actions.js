@@ -15,7 +15,7 @@ const loadStore = (allData) => {
 //FETCH ALL
 export async function fetchAll(dispatch, getState) {
   // console.log("Ur in thunk now");
-  const token = selectToken(getState());
+  const token = getState().user.token;
   console.log("Token is: ", token);
   const userId = getState().user.id;
   try {

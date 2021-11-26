@@ -31,7 +31,7 @@ export default function Homepage() {
     if (token === null) {
       navigate("/");
     }
-  }, []);
+  }, [token]);
 
   // console.log("this is userFull ", userFull);
   // console.log("this is sheets: ", sheets);
