@@ -1,6 +1,7 @@
 //imports
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
+import { selectToken } from "../user/selectors";
 //action creators
 const loadStore = (allData) => {
   // console.log("Hi from action creator");
@@ -14,11 +15,14 @@ const loadStore = (allData) => {
 //FETCH ALL
 export async function fetchAll(dispatch, getState) {
   // console.log("Ur in thunk now");
+  const token = selectToken(getState());
+  console.log("Token is: ", token);
   const userId = getState().user.id;
-  // console.log("userId is ", userId);
   try {
     // console.log("fetching data...");
-    const res = await axios.get(`${apiUrl}/sheet/${userId}`);
+    const res = await axios.get(`${apiUrl}/sheet/${userId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     // console.log("actions data sheets: ", res.data); // is an object
     dispatch(loadStore(res.data));
   } catch (e) {
