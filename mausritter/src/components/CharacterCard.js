@@ -32,7 +32,7 @@ export default function CharacterCard(props) {
         <div style={{ display: "flex" }}>
           <h3>Background:</h3>
           <input
-            type="number"
+            type="string"
             value={charBackground}
             name="charBackground"
             onChange={(event) => onChangeHandler(event)}

@@ -45,7 +45,7 @@ export default function Charactersheet() {
             Back to homepage
           </button>
         </Link>
-        <button onClick={toggleEdit}>Edit your sheet!</button>
+        <button>Edit your sheet!</button>
         <CharacterCard
           readOnly={readOnly}
           sheet={sheet}

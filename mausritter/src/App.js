@@ -10,6 +10,7 @@ import Homepage from "./pages/Homepage";
 import Charactersheet from "./pages/Charactersheet";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import CreateCharacter from "./pages/Createcharacter";
 //actions and selectors
 import { selectToken } from "./store/user/selectors";
 import { logOut } from "./store/user/actions";
@@ -18,6 +19,11 @@ import { logOut } from "./store/user/actions";
 function App() {
   const token = useSelector(selectToken);
   const dispatch = useDispatch();
+  /*
+  there needs to be a useEffect that upon rerendering checks for the token that should 
+  be in local storage, then use that token to fetch data of user from store. 
+  Problem: upon refreshing, the store wipes. 
+  */
 
   return (
     <div
@@ -43,6 +49,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/sheet/:name" element={<Charactersheet />} />
+          <Route path="/sheet/create" element={<CreateCharacter />} />
           <Route path="/home" element={<Homepage />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>

@@ -52,7 +52,7 @@ export function updateSheet(sheet) {
     // const res = await axios.patch(`${apiUrl}/sheet/${userId}`);
     // console.log("response is ", res.data);
     //don't dispatch this, just update the store with dispatch action artworkdetail
-    dispatch(fetchOneArt(id));
+    // dispatch(loadStore(allData));
   };
 }
 

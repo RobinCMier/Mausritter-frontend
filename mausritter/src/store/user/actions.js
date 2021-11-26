@@ -2,6 +2,7 @@
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
 //action creators
+//log in
 const loginSuccess = (userWithToken) => {
   // console.log("Hi from action creator");
   return {
@@ -9,6 +10,7 @@ const loginSuccess = (userWithToken) => {
     payload: userWithToken,
   };
 };
+//log out
 export const logOut = () => ({ type: "user/logOut" });
 
 //THUNKS etc
@@ -25,9 +27,11 @@ export const login = (email, password) => {
         email,
         password,
       });
-      // console.log("This is response.data ", response.data);
+      console.log("This is response.data ", response.data);
 
       dispatch(loginSuccess(response.data));
+      const token = response.data.token;
+      localStorage.setItem("token", token);
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);

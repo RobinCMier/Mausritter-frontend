@@ -27,9 +27,11 @@ export default function Homepage() {
   }, [dispatch]);
   const sheets = userFull.sheets;
   //recycle this for every page:
-  if (token === null) {
-    navigate("/");
-  }
+  useEffect(() => {
+    if (token === null) {
+      navigate("/");
+    }
+  }, []);
 
   // console.log("this is userFull ", userFull);
   // console.log("this is sheets: ", sheets);
@@ -37,6 +39,16 @@ export default function Homepage() {
   return (
     <div>
       <h1>Welcome back, {userFull.name}</h1>
+      <Link to="/sheet/create">
+        <button
+          style={{
+            backgroundColor: "#b1f59d",
+            fontSize: 30,
+          }}
+        >
+          Create a new character!
+        </button>
+      </Link>
       <h3>Here are your created character sheets:</h3>
       {!userFull ? (
         <div>Loading your account...</div>
