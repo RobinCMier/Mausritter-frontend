@@ -1,16 +1,8 @@
-/*TO DO
-concept: 
-V user gets here thru buttonlink on homepage
-page is a form, that looks similar to the charactersheet but everything is an input field and there's a submit button
-on submit, redirect to homepage, and homepage should rerender to show new chaarcter sheet.
-
-In dispatch action, there should be a userId!!!
-THIS IS TEMP, should get the token to work actually, and then this would not be needed. 
-*/
 //tool imports
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 //actions
 import { createSheet } from "../../store/sheets/actions";
 
@@ -19,13 +11,13 @@ export default function CreateCharacter() {
   const navigate = useNavigate();
   const [charName, setCharName] = useState("");
   const [charBackground, setCharBackground] = useState("");
-  const [charColor, setCharColor] = useState(""); // add this later
-  const [level, setLevel] = useState(); //is this how you fill in null for int?
-  const [pips, setPips] = useState();
-  const [maxHP, setMaxHP] = useState(); //later say currentHP equals maxHP, this does not have to be an input field
-  const [str, setStr] = useState();
-  const [dex, setDex] = useState();
-  const [will, setWill] = useState();
+  // const [charColor, setCharColor] = useState(""); // add this later
+  const [level, setLevel] = useState(""); //is this how you fill in null for int?
+  const [pips, setPips] = useState("");
+  const [maxHP, setMaxHP] = useState(""); //later say currentHP equals maxHP, this does not have to be an input field
+  const [str, setStr] = useState("");
+  const [dex, setDex] = useState("");
+  const [will, setWill] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -34,7 +26,7 @@ export default function CreateCharacter() {
     const fullSheet = {
       charName,
       charBackground,
-      charColor,
+      // charColor,
       level,
       pips,
       maxHP,
@@ -46,12 +38,17 @@ export default function CreateCharacter() {
     console.log("fullSheet is: ", fullSheet); //object
     dispatch(createSheet(fullSheet));
     // navigate("/");
-    //REMOVE THE PARSEINT
   }
 
   return (
     <div>
       <div>
+        <Link to="/home">
+          <button style={{ backgroundColor: "#b1f59d", fontSize: 20 }}>
+            Back to Homepage
+          </button>
+        </Link>
+
         <form onSubmit={handleSubmit}>
           <div style={{ display: "flex" }}>
             <h3>Character name:</h3>
@@ -68,7 +65,7 @@ export default function CreateCharacter() {
               type="number"
               value={level}
               name="level"
-              onChange={(e) => setLevel(parseInt(e.target.value))}
+              onChange={(e) => setLevel(e.target.value)}
             />
           </div>
           <div style={{ display: "flex" }}>
@@ -86,7 +83,7 @@ export default function CreateCharacter() {
               type="number"
               value={pips}
               name="pips"
-              onChange={(e) => setPips(parseInt(e.target.value))}
+              onChange={(e) => setPips(e.target.value)}
             />
           </div>
           <div style={{ display: "flex" }}>
@@ -95,7 +92,7 @@ export default function CreateCharacter() {
               type="number"
               value={maxHP}
               name="maxHP"
-              onChange={(e) => setMaxHP(parseInt(e.target.value))}
+              onChange={(e) => setMaxHP(e.target.value)}
             />
           </div>
           <div style={{ display: "flex" }}>
@@ -105,21 +102,21 @@ export default function CreateCharacter() {
                 type="number"
                 value={str}
                 name="str"
-                onChange={(e) => setStr(parseInt(e.target.value))}
+                onChange={(e) => setStr(e.target.value)}
               />
               <li>Dexterity:</li>
               <input
                 type="number"
                 value={dex}
                 name="dex"
-                onChange={(e) => setDex(parseInt(e.target.value))}
+                onChange={(e) => setDex(e.target.value)}
               />
               <li>Willpower: </li>
               <input
                 type="number"
                 value={will}
                 name="will"
-                onChange={(e) => setWill(parseInt(e.target.value))}
+                onChange={(e) => setWill(e.target.value)}
               />
             </ul>
           </div>

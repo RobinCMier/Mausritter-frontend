@@ -32,12 +32,14 @@ export const createSheet = (fullSheet) => {
   return async (dispatch, getState) => {
     console.log("Getting into thunk...");
     const userId = getState().user.id;
+    console.log("user id is: ", userId);
     try {
       const response = await axios.post(`${apiUrl}/sheet/postsheet`, {
         fullSheet, //is an object with all the values, prolly need to extract in backend.
         userId,
       });
       console.log(" this is response: ", response.data);
+      dispatch(fetchAll);
     } catch (e) {
       //check practice ass message system > make an extra slice.
       console.log(e.message);
@@ -46,9 +48,6 @@ export const createSheet = (fullSheet) => {
 };
 
 //EDIT A SHEET
-//need: sheetId to put in the url for the endpoint params
-//the whole sheet with all its data.
-// url is 400/sheet/editsheet/:id
 export function updateSheet(sheet) {
   console.log("this is sheet: ", sheet);
   return async (dispatch, getState) => {
@@ -60,7 +59,6 @@ export function updateSheet(sheet) {
 
     console.log("response is ", res.data);
     dispatch(fetchAll);
-    //now dispatch the new info
   };
 }
 
