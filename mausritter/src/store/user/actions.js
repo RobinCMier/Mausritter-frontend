@@ -3,7 +3,7 @@ import { apiUrl } from "../../config/constants";
 import axios from "axios";
 //action creators
 const loginSuccess = (userWithToken) => {
-  console.log("Hi from action creator");
+  // console.log("Hi from action creator");
   return {
     type: "user/loginSucces",
     payload: userWithToken,
@@ -15,17 +15,17 @@ export const logOut = () => ({ type: "user/logOut" });
 
 export const login = (email, password) => {
   return async (dispatch, getState) => {
-    console.log(
-      "You're calling the login dispatch and your arguments are: ",
-      email,
-      password
-    );
+    // console.log(
+    //   "You're calling the login dispatch and your arguments are: ",
+    //   email,
+    //   password
+    // );
     try {
       const response = await axios.post(`${apiUrl}/auth/login`, {
         email,
         password,
       });
-      console.log("This is response.data ", response.data);
+      // console.log("This is response.data ", response.data);
 
       dispatch(loginSuccess(response.data));
     } catch (error) {
