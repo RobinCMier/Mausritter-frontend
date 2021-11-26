@@ -25,15 +25,16 @@ export default function Charactersheet() {
   // console.log("sheet is: ", sheet);
   const onChangeHandler = (event) => {
     console.log("This is the event: ", event.target);
+    console.log("sheet of line 28 is: ", sheet);
     setSheet({ ...sheet, [event.target.name]: event.target.value });
   };
-  // const toggleEdit=(event) =>{
-  //   setReadOnly(!readOnly)
-  //   if (readOnly==true){
-  //     //how to put all the new info in an object 'sheet' so I can put it in as an argument to the thunk?
-  //     dispatch(updateSheet(sheet))
-  //   }
-  // }
+  const toggleEdit = () => {
+    setReadOnly(!readOnly);
+    if (readOnly == true) {
+      //just yeet the whole sheet lol
+      dispatch(updateSheet(sheet)); //add sheetId
+    }
+  };
   //create function to toggle between readonly true and false. When set back on true, dispatch action to save to DB
   //dispatch action needs: the new values (obv), and sheetId to put in request URL.
 
@@ -45,7 +46,7 @@ export default function Charactersheet() {
             Back to homepage
           </button>
         </Link>
-        <button>Edit your sheet!</button>
+        <button onClick={toggleEdit}>Edit your sheet!</button>
         <CharacterCard
           readOnly={readOnly}
           sheet={sheet}

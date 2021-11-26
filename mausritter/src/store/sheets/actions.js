@@ -27,6 +27,23 @@ export async function fetchAll(dispatch, getState) {
 }
 //CREATE A SHEET
 // url is 4000/sheet/postsheet
+export const createSheet = (fullSheet) => {
+  console.log("Getting into thunk creator..");
+  return async (dispatch, getState) => {
+    console.log("Getting into thunk...");
+    const userId = getState().user.id;
+    try {
+      const response = await axios.post(`${apiUrl}/sheet/postsheet`, {
+        fullSheet, //is an object with all the values, prolly need to extract in backend.
+        userId,
+      });
+      console.log(" this is response: ", response.data);
+    } catch (e) {
+      //check practice ass message system > make an extra slice.
+      console.log(e.message);
+    }
+  };
+};
 
 //EDIT A SHEET
 //need: sheetId to put in the url for the endpoint params
@@ -47,12 +64,12 @@ export function updateSheet(sheet) {
   } = sheet;
   console.log("this is sheet: ", sheet);
   return async (dispatch, getState) => {
-    const userId = getState().user.id;
+    const userId = getState().sheets.userFull.sheets.id;
     console.log("this is id: ", userId);
-    // const res = await axios.patch(`${apiUrl}/sheet/${userId}`);
-    // console.log("response is ", res.data);
-    //don't dispatch this, just update the store with dispatch action artworkdetail
-    // dispatch(loadStore(allData));
+    const res = await axios.patch(`${apiUrl}/sheet/editsheet/${sheet.id}`, {
+      sheet,
+    });
+    console.log("response is ", res.data);
   };
 }
 

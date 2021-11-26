@@ -9,10 +9,16 @@ THIS IS TEMP, should get the token to work actually, and then this would not be 
 */
 //tool imports
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+//actions
+import { createSheet } from "../../store/sheets/actions";
 
 export default function CreateCharacter() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [charName, setCharName] = useState("");
-  const [charBackground, setCharBackgroun] = useState("");
+  const [charBackground, setCharBackground] = useState("");
   const [charColor, setCharColor] = useState(""); // add this later
   const [level, setLevel] = useState(); //is this how you fill in null for int?
   const [pips, setPips] = useState();
@@ -21,82 +27,109 @@ export default function CreateCharacter() {
   const [dex, setDex] = useState();
   const [will, setWill] = useState();
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log("So you wanna submit huh");
+    const currentHP = maxHP;
+    const fullSheet = {
+      charName,
+      charBackground,
+      charColor,
+      level,
+      pips,
+      maxHP,
+      currentHP,
+      str,
+      dex,
+      will,
+    };
+    console.log("fullSheet is: ", fullSheet); //object
+    dispatch(createSheet(fullSheet));
+    // navigate("/");
+    //REMOVE THE PARSEINT
+  }
+
   return (
     <div>
       <div>
-        <div style={{ display: "flex" }}>
-          <h3>Character name:</h3>
-          <input
-            type="string"
-            value={charName}
-            name="level"
-            onChange={(e) => setCharName(e.target.value)}
-          />
-        </div>
-        <div style={{ display: "flex" }}>
-          <h3>Level:</h3>
-          <input
-            type="number"
-            value={level}
-            name="level"
-            onChange={(e) => setLevel(e.target.value)}
-          />
-        </div>
-        <div style={{ display: "flex" }}>
-          <h3>Background:</h3>
-          <input
-            type="string"
-            value={charBackground}
-            name="charBackground"
-            onChange={(e) => setCharBackgroun(e.target.value)}
-          />
-        </div>
-        <div style={{ display: "flex" }}>
-          <p>Pips:</p>
-          <input
-            type="number"
-            value={pips}
-            name="pips"
-            onChange={(e) => setPips(e.target.value)}
-          />
-        </div>
-        <div style={{ display: "flex" }}>
-          <p>Max HP: </p>
-          <input
-            type="number"
-            value={maxHP}
-            name="maxHP"
-            onChange={(e) => setMaxHP(e.target.value)}
-          />
-        </div>
-        <div style={{ display: "flex" }}>
-          <ul>
-            <li>Strength:</li>
+        <form onSubmit={handleSubmit}>
+          <div style={{ display: "flex" }}>
+            <h3>Character name:</h3>
+            <input
+              type="text"
+              value={charName}
+              name="level"
+              onChange={(e) => setCharName(e.target.value)}
+            />
+          </div>
+          <div style={{ display: "flex" }}>
+            <h3>Level:</h3>
             <input
               type="number"
-              value={str}
-              name="str"
-              onChange={(e) => setStr(e.target.value)}
+              value={level}
+              name="level"
+              onChange={(e) => setLevel(parseInt(e.target.value))}
             />
-            <li>Dexterity:</li>
+          </div>
+          <div style={{ display: "flex" }}>
+            <h3>Background:</h3>
+            <input
+              type="text"
+              value={charBackground}
+              name="charBackground"
+              onChange={(e) => setCharBackground(e.target.value)}
+            />
+          </div>
+          <div style={{ display: "flex" }}>
+            <p>Pips:</p>
             <input
               type="number"
-              value={dex}
-              name="dex"
-              onChange={(e) => setDex(e.target.value)}
+              value={pips}
+              name="pips"
+              onChange={(e) => setPips(parseInt(e.target.value))}
             />
-            <li>Willpower: </li>
+          </div>
+          <div style={{ display: "flex" }}>
+            <p>Max HP: </p>
             <input
               type="number"
-              value={will}
-              name="will"
-              onChange={(e) => setWill(e.target.value)}
+              value={maxHP}
+              name="maxHP"
+              onChange={(e) => setMaxHP(parseInt(e.target.value))}
             />
-          </ul>
-        </div>
-        <button style={{ backgroundColor: "#b1f59d", fontSize: 20 }}>
-          Submit
-        </button>
+          </div>
+          <div style={{ display: "flex" }}>
+            <ul>
+              <li>Strength:</li>
+              <input
+                type="number"
+                value={str}
+                name="str"
+                onChange={(e) => setStr(parseInt(e.target.value))}
+              />
+              <li>Dexterity:</li>
+              <input
+                type="number"
+                value={dex}
+                name="dex"
+                onChange={(e) => setDex(parseInt(e.target.value))}
+              />
+              <li>Willpower: </li>
+              <input
+                type="number"
+                value={will}
+                name="will"
+                onChange={(e) => setWill(parseInt(e.target.value))}
+              />
+            </ul>
+          </div>
+          <button
+            type="submit"
+            style={{ backgroundColor: "#b1f59d", fontSize: 20 }}
+          >
+            Submit
+          </button>
+        </form>
       </div>
     </div>
   );

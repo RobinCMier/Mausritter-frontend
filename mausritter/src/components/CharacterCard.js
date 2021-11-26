@@ -2,28 +2,18 @@
 
 //function
 export default function CharacterCard(props) {
-  const {
-    charName,
-    charBackground,
-    charColor,
-    level,
-    pips,
-    currentHP,
-    maxHP,
-    str,
-    dex,
-    will,
-  } = props.sheet;
   const { onChangeHandler, readOnly } = props;
   return (
     <div>
       <div>
-        <h1 style={{ color: `${charColor}` }}>{charName}</h1>
+        <h1 style={{ color: `${props.sheet.charColor}` }}>
+          {props.sheet.charName}
+        </h1>
         <div style={{ display: "flex" }}>
           <h3>Level:</h3>
           <input
             type="number"
-            value={level}
+            value={props.sheet.level}
             name="level"
             onChange={(event) => onChangeHandler(event)}
             readOnly={readOnly}
@@ -33,7 +23,7 @@ export default function CharacterCard(props) {
           <h3>Background:</h3>
           <input
             type="string"
-            value={charBackground}
+            value={props.sheet.charBackground}
             name="charBackground"
             onChange={(event) => onChangeHandler(event)}
             readOnly={readOnly}
@@ -43,9 +33,9 @@ export default function CharacterCard(props) {
           <p>Pips:</p>
           <input
             type="number"
-            value={pips}
+            value={props.sheet.pips}
             name="pips"
-            onChange={(event) => onChangeHandler(event)}
+            onChange={onChangeHandler}
             readOnly={readOnly}
           />
         </div>
@@ -53,7 +43,7 @@ export default function CharacterCard(props) {
           <p>Current HP : </p>
           <input
             type="number"
-            value={currentHP}
+            value={props.sheet.currentHP}
             name="currentHP"
             onChange={(event) => onChangeHandler(event)}
             readOnly={readOnly}
@@ -63,7 +53,7 @@ export default function CharacterCard(props) {
           <p>Max HP: </p>
           <input
             type="number"
-            value={maxHP}
+            value={props.sheet.maxHP}
             name="maxHP"
             onChange={(event) => onChangeHandler(event)}
             readOnly={readOnly}
@@ -74,7 +64,7 @@ export default function CharacterCard(props) {
             <li>Strength:</li>
             <input
               type="number"
-              value={str}
+              value={props.sheet.str}
               name="str"
               onChange={(event) => onChangeHandler(event)}
               readOnly={readOnly}
@@ -82,7 +72,7 @@ export default function CharacterCard(props) {
             <li>Dexterity:</li>
             <input
               type="number"
-              value={dex}
+              value={props.sheet.dex}
               name="dex"
               onChange={(event) => onChangeHandler(event)}
               readOnly={readOnly}
@@ -90,7 +80,7 @@ export default function CharacterCard(props) {
             <li>Willpower: </li>
             <input
               type="number"
-              value={will}
+              value={props.sheet.will}
               name="will"
               onChange={(event) => onChangeHandler(event)}
               readOnly={readOnly}
