@@ -2,17 +2,23 @@
 import { Link } from "react-router-dom";
 import { useParams, useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 //component imports
 import { selectToken } from "../../store/user/selectors";
-import { selectSheetByName } from "../../store/sheets/selectors";
+import {
+  selectSheetByName,
+  selectUserFull,
+} from "../../store/sheets/selectors";
 import CharacterCard from "../../components/CharacterCard";
 import { updateSheet } from "../../store/sheets/actions";
+import { fetchAll } from "../../store/sheets/actions";
 
 //default function
 export default function Charactersheet() {
   const dispatch = useDispatch();
   const [readOnly, setReadOnly] = useState(true);
+  console.log("What is readOnly? ", readOnly);
   const navigate = useNavigate();
   const token = useSelector(selectToken);
   if (token === null) {
@@ -24,13 +30,12 @@ export default function Charactersheet() {
   // console.log("character name is: ", charName);
   // console.log("sheet is: ", sheet);
   const onChangeHandler = (event) => {
-    console.log("This is the event: ", event.target);
-    console.log("sheet of line 28 is: ", sheet);
+    // console.log("This is the event: ", event.target);
     setSheet({ ...sheet, [event.target.name]: event.target.value });
   };
   const toggleEdit = () => {
     setReadOnly(!readOnly);
-    if (readOnly == true) {
+    if (readOnly !== true) {
       //just yeet the whole sheet lol
       dispatch(updateSheet(sheet)); //add sheetId
     }

@@ -50,18 +50,6 @@ export const createSheet = (fullSheet) => {
 //the whole sheet with all its data.
 // url is 400/sheet/editsheet/:id
 export function updateSheet(sheet) {
-  const {
-    charName,
-    charColor,
-    level,
-    charBackground,
-    pips,
-    currentHP,
-    maxHP,
-    str,
-    dex,
-    will,
-  } = sheet;
   console.log("this is sheet: ", sheet);
   return async (dispatch, getState) => {
     const userId = getState().sheets.userFull.sheets.id;
@@ -69,7 +57,10 @@ export function updateSheet(sheet) {
     const res = await axios.patch(`${apiUrl}/sheet/editsheet/${sheet.id}`, {
       sheet,
     });
+
     console.log("response is ", res.data);
+    dispatch(fetchAll);
+    //now dispatch the new info
   };
 }
 
