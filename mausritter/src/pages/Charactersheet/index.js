@@ -6,13 +6,9 @@ import { useState, useEffect } from "react";
 
 //component imports
 import { selectToken } from "../../store/user/selectors";
-import {
-  selectSheetByName,
-  selectUserFull,
-} from "../../store/sheets/selectors";
+import { selectSheetByName } from "../../store/user/selectors";
 import CharacterCard from "../../components/CharacterCard";
 import { updateSheet } from "../../store/sheets/actions";
-import { fetchAll } from "../../store/sheets/actions";
 
 //default function
 export default function Charactersheet() {
