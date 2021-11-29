@@ -10,8 +10,16 @@ const loginSuccess = (userWithToken) => {
     payload: userWithToken,
   };
 };
-//log out
+//log out ALSO REMOVE THE TOKEN!!!!!
 export const logOut = () => ({ type: "user/logOut" });
+//update sheet after edit
+const sheetUpdate = (sheetData) => {
+  console.log("hi from action creator");
+  return {
+    type: "user/updateSheet",
+    payload: sheetData,
+  };
+};
 
 //THUNKS etc
 //login
@@ -73,3 +81,18 @@ export const bootstrapLogin = () => async (dispatch, getState) => {
     console.log("no token stored in localstorage");
   }
 };
+//SHEET STUFF:
+//edit sheet
+export function updateSheet(sheet) {
+  console.log("this is sheet: ", sheet);
+  return async (dispatch, getState) => {
+    const userId = getState().user.id;
+    console.log("this is id: ", userId);
+    const res = await axios.patch(`${apiUrl}/sheet/editsheet/${sheet.id}`, {
+      sheet,
+    });
+
+    console.log("response is ", res.data);
+    dispatch(sheetUpdate(res.data));
+  };
+}

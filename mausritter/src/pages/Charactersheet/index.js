@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { selectToken } from "../../store/user/selectors";
 import { selectSheetByName } from "../../store/user/selectors";
 import CharacterCard from "../../components/CharacterCard";
-import { updateSheet } from "../../store/sheets/actions";
+import { updateSheet } from "../../store/user/actions";
 
 //default function
 export default function Charactersheet() {
@@ -20,11 +20,12 @@ export default function Charactersheet() {
   if (token === null) {
     navigate("/");
   }
+
   const params = useParams();
   const charName = params.name;
   const [sheet, setSheet] = useState(useSelector(selectSheetByName(charName))); //object
   // console.log("character name is: ", charName);
-  // console.log("sheet is: ", sheet);
+  console.log("sheet is: ", sheet);
   const onChangeHandler = (event) => {
     // console.log("This is the event: ", event.target);
     setSheet({ ...sheet, [event.target.name]: event.target.value });

@@ -1,26 +1,24 @@
 //tool imports
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 //comp and action imports
 import { selectToken } from "../../store/user/selectors";
-import { selectUserFull } from "../../store/user/selectors";
+import { selectUser } from "../../store/user/selectors";
+import { selectSheets } from "../../store/user/selectors";
+
 /*TO DO
-create store for sheets
-create a thunk first fetching the userId with getState from user reducer
-then make thunk request all the sheets from this user
-dispatch action to put this in state
-useSelector to display the names of the sheets as b utton links
-the buttons link to charactersheet page
-the buttons are the coluor indicated in DB
+After editing sheet, these changes do not update from homepage. Going back to homepage
+and then again to sheet, shows the sheet is not updated. This because the new sheets get plunked in user
+rather than user. sheets. 
 */
 //default function
 export default function Homepage() {
   const token = useSelector(selectToken);
   const navigate = useNavigate();
-  const userFull = useSelector(selectUserFull);
-  const sheets = userFull.sheets;
+  const user = useSelector(selectUser);
+  const sheets = useSelector(selectSheets);
   //recycle this for every page:
   useEffect(() => {
     if (token === null) {
@@ -33,7 +31,7 @@ export default function Homepage() {
 
   return (
     <div>
-      <h1>Welcome back, {userFull.name}</h1>
+      <h1>Welcome back, {user.name}</h1>
       <Link to="/sheet/create">
         <button
           style={{
@@ -45,7 +43,7 @@ export default function Homepage() {
         </button>
       </Link>
       <h3>Here are your created character sheets:</h3>
-      {!userFull ? (
+      {!user ? (
         <div>Loading your account...</div>
       ) : (
         <div>

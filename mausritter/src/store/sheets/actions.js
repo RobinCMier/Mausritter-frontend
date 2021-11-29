@@ -52,19 +52,19 @@ export const createSheet = (fullSheet) => {
 };
 
 //EDIT A SHEET
-export function updateSheet(sheet) {
-  console.log("this is sheet: ", sheet);
-  return async (dispatch, getState) => {
-    const userId = getState().sheets.userFull.sheets.id;
-    console.log("this is id: ", userId);
-    const res = await axios.patch(`${apiUrl}/sheet/editsheet/${sheet.id}`, {
-      sheet,
-    });
+// export function updateSheet(sheet) {
+//   console.log("this is sheet: ", sheet);
+//   return async (dispatch, getState) => {
+//     const userId = getState().sheets.userFull.sheets.id;
+//     console.log("this is id: ", userId);
+//     const res = await axios.patch(`${apiUrl}/sheet/editsheet/${sheet.id}`, {
+//       sheet,
+//     });
 
-    console.log("response is ", res.data);
-    dispatch(fetchAll);
-  };
-}
+//     console.log("response is ", res.data);
+//     dispatch(fetchAll);
+//   };
+// }
 
 //DELETE A SHEET
 //need: userId and sheetId in url
