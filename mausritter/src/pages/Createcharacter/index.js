@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 //actions
-import { createSheet } from "../../store/sheets/actions";
+import { createSheet } from "../../store/user/actions";
 
 export default function CreateCharacter() {
   const dispatch = useDispatch();

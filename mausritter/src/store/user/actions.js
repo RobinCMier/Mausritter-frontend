@@ -96,3 +96,23 @@ export function updateSheet(sheet) {
     dispatch(sheetUpdate(res.data));
   };
 }
+//create sheet
+export const createSheet = (fullSheet) => {
+  console.log("Getting into thunk creator..");
+  return async (dispatch, getState) => {
+    console.log("Getting into thunk...");
+    const userId = getState().user.id;
+    console.log("user id is: ", userId);
+    try {
+      const response = await axios.post(`${apiUrl}/sheet/postsheet`, {
+        fullSheet, //is an object with all the values, prolly need to extract in backend.
+        userId,
+      });
+      console.log(" this is response: ", response.data);
+      dispatch(bootstrapLogin);
+    } catch (e) {
+      //check practice ass message system > make an extra slice.
+      console.log(e.message);
+    }
+  };
+};
