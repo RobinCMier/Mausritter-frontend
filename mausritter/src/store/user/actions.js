@@ -118,3 +118,25 @@ export const createSheet = (fullSheet) => {
 //DELETE A SHEET
 //need: userId and sheetId in url
 // 4000/sheet/:userId/delete/:sheetid
+export const deleteSheet = (sheetId) => {
+  return async (dispatch, getState) => {
+    const userId = getState().user.id;
+    const token = localStorage.getItem("token");
+    console.log("UserId: ", userId, "sheetId is: ", sheetId);
+    try {
+      const response = await axios.delete(
+        `${apiUrl}/sheet/${userId}/delete/${sheetId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("Story deleted?", response.data);
+      dispatch(bootstrapLogin(response.data));
+    } catch (e) {
+      console.error(e);
+    }
+  };
+};

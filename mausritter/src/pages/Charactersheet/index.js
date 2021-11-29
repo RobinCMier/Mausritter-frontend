@@ -6,9 +6,9 @@ import { useState, useEffect } from "react";
 
 //component imports
 import { selectToken } from "../../store/user/selectors";
-import { selectSheetByName } from "../../store/user/selectors";
+import { selectSheetByName, selectSheets } from "../../store/user/selectors";
 import CharacterCard from "../../components/CharacterCard";
-import { updateSheet } from "../../store/user/actions";
+import { updateSheet, deleteSheet } from "../../store/user/actions";
 
 //default function
 export default function Charactersheet() {
@@ -17,15 +17,25 @@ export default function Charactersheet() {
   console.log("What is readOnly? ", readOnly);
   const navigate = useNavigate();
   const token = useSelector(selectToken);
+  const testSheet = useSelector(selectSheets);
+  const params = useParams();
+  const charName = params.name;
+  const rendersheet = testSheet.find((sheet) => sheet.charName === charName);
   if (token === null) {
     navigate("/");
   }
 
-  const params = useParams();
-  const charName = params.name;
-  const [sheet, setSheet] = useState(useSelector(selectSheetByName(charName))); //object
+  const [sheet, setSheet] = useState(rendersheet); //this is too fast
   // console.log("character name is: ", charName);
-  console.log("sheet is: ", sheet);
+  console.log("sheet is: ", typeof sheet, sheet);
+  if (!sheet) {
+    navigate("/");
+  }
+
+  useEffect(() => {
+    setSheet(rendersheet);
+  }, [rendersheet, sheet]);
+
   const onChangeHandler = (event) => {
     // console.log("This is the event: ", event.target);
     setSheet({ ...sheet, [event.target.name]: event.target.value });
@@ -33,13 +43,19 @@ export default function Charactersheet() {
   const toggleEdit = () => {
     setReadOnly(!readOnly);
     if (readOnly !== true) {
-      //just yeet the whole sheet lol
       dispatch(updateSheet(sheet)); //add sheetId
     }
   };
-  //create function to toggle between readonly true and false. When set back on true, dispatch action to save to DB
-  //dispatch action needs: the new values (obv), and sheetId to put in request URL.
+  const onDelete = (id) => {
+    console.log("deleting character!", id);
+    dispatch(deleteSheet(id));
+  };
+  /*DELETE CHAR
+  -onclick
+  - dispatch action to delete the story
+  - find a way to then go to homepage, which should be updated. (!sheet?navigate maybe?)
 
+  */
   return (
     <div>
       <div>
@@ -48,12 +64,21 @@ export default function Charactersheet() {
             Back to homepage
           </button>
         </Link>
-        <button onClick={toggleEdit}>Edit your sheet!</button>
-        <CharacterCard
-          readOnly={readOnly}
-          sheet={sheet}
-          onChangeHandler={onChangeHandler}
-        />
+        {!sheet ? (
+          <div>Loading sheet...</div>
+        ) : (
+          <div>
+            <button onClick={toggleEdit}>Edit your sheet!</button>
+            <CharacterCard
+              readOnly={readOnly}
+              sheet={sheet}
+              onChangeHandler={onChangeHandler}
+            />
+            <button onClick={() => onDelete(sheet.id)}>
+              Delete your character
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
