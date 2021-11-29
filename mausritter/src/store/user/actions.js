@@ -4,7 +4,7 @@ import axios from "axios";
 //action creators
 //log in
 const loginSuccess = (userWithToken) => {
-  console.log("Hi from action creator");
+  // console.log("Hi from action creator");
   return {
     type: "user/loginSucces",
     payload: userWithToken,
@@ -14,7 +14,7 @@ const loginSuccess = (userWithToken) => {
 export const logOut = () => ({ type: "user/logOut" });
 //update sheet after edit
 const sheetUpdate = (sheetData) => {
-  console.log("hi from action creator");
+  // console.log("hi from action creator");
   return {
     type: "user/updateSheet",
     payload: sheetData,
@@ -30,8 +30,7 @@ export const login = (email, password) => {
         email,
         password,
       });
-      console.log("This is response.data ", response.data);
-
+      // console.log("This is response.data ", response.data);
       dispatch(loginSuccess(response.data));
       const token = response.data.token;
       localStorage.setItem("token", token);
@@ -67,7 +66,7 @@ export const signUp = (name, email, password) => {
 //check token and fetch user
 export const bootstrapLogin = () => async (dispatch, getState) => {
   const token = localStorage.getItem("token");
-  console.log("token is: ", token);
+  // console.log("token is: ", token);
   if (token) {
     // make /me call
     const response = await axios.get(`${apiUrl}/auth/me`, {
@@ -75,44 +74,47 @@ export const bootstrapLogin = () => async (dispatch, getState) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log("response: ", response.data); // need token
+    // console.log("response: ", response.data);
     dispatch(loginSuccess(response.data));
   } else {
     console.log("no token stored in localstorage");
   }
 };
 //SHEET STUFF:
+
 //edit sheet
 export function updateSheet(sheet) {
-  console.log("this is sheet: ", sheet);
+  // console.log("this is sheet: ", sheet);
   return async (dispatch, getState) => {
     const userId = getState().user.id;
-    console.log("this is id: ", userId);
+    // console.log("this is id: ", userId);
     const res = await axios.patch(`${apiUrl}/sheet/editsheet/${sheet.id}`, {
       sheet,
     });
 
-    console.log("response is ", res.data);
+    // console.log("response is ", res.data);
     dispatch(sheetUpdate(res.data));
   };
 }
 //create sheet
 export const createSheet = (fullSheet) => {
-  console.log("Getting into thunk creator..");
   return async (dispatch, getState) => {
-    console.log("Getting into thunk...");
     const userId = getState().user.id;
-    console.log("user id is: ", userId);
+    // console.log("user id is: ", userId);
     try {
       const response = await axios.post(`${apiUrl}/sheet/postsheet`, {
         fullSheet, //is an object with all the values, prolly need to extract in backend.
         userId,
       });
-      console.log(" this is response: ", response.data);
-      dispatch(bootstrapLogin);
+      // console.log(" this is response: ", response.data);
+      dispatch(bootstrapLogin(response.data));
     } catch (e) {
       //check practice ass message system > make an extra slice.
       console.log(e.message);
     }
   };
 };
+
+//DELETE A SHEET
+//need: userId and sheetId in url
+// 4000/sheet/:userId/delete/:sheetid
