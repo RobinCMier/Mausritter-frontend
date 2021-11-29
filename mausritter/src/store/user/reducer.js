@@ -18,17 +18,16 @@ export default (state = initialState, action) => {
       // console.log("this is action payload: ", action.payload);
       const sheetId = action.payload.id;
       // console.log("this is sheet id: ", sheetId);
-      //return all sheets except the one to be edited:
-      const sheetsSansTarget = state.sheets.filter(
-        (sheet) => sheet.id !== sheetId
-      );
-      // console.log(
-      //   "these are the sheets that will not be changed: ",
-      //   sheetsSansTarget
-      // );
-      const newSheets = [...sheetsSansTarget, action.payload];
-      // console.log("and this should be all sheets incl edited: ", newSheets);
-      return { ...state, ...(state.sheets = newSheets) };
+      const newSheets = state.sheets.map((sheet) => {
+        if (sheet.id === sheetId) {
+          return {
+            ...(sheet, action.payload),
+          };
+        } else {
+          return sheet;
+        }
+      });
+      return { ...state, sheets: newSheets }; //this is updating user and not user.sheets. Fix this
 
     default:
       return state;
