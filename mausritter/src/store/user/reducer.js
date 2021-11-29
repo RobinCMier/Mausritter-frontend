@@ -1,8 +1,9 @@
 const initialState = {
-  token: null,
+  token: localStorage.getItem("token"),
   id: null,
   name: null,
   email: null,
+  sheets: [],
 };
 
 export default (state = initialState, action) => {

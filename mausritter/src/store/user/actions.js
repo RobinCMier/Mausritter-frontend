@@ -24,7 +24,7 @@ export const login = (email, password) => {
       });
       console.log("This is response.data ", response.data);
 
-      dispatch(loginSuccess(response.data)); //this one doesn't work so it never gets into the store???
+      dispatch(loginSuccess(response.data));
       const token = response.data.token;
       localStorage.setItem("token", token);
     } catch (error) {
@@ -57,19 +57,6 @@ export const signUp = (name, email, password) => {
   };
 };
 //check token and fetch user
-/*CONCEPT & TO DO
- I want App.js to on every render, check the local storage for token,
- and if it finds a token, then use the token to get to the me endpoint.
- From the me endpoint it should get an id, which then will be used to request from
- the GET sheet/:id endpoint, which is above userId
- ->THUNK looks for token in local storage
- -> if no token, just return. The redirect on homepage will make it go to log in
- -> Make token usable
- -> shoot get request to /auth/me 
- -> response should give entire user. Check this against reducer initial state
- -> add token, then send both to reducer with loginSuccess.
- -> Done!
- */
 export const bootstrapLogin = () => async (dispatch, getState) => {
   const token = localStorage.getItem("token");
   console.log("token is: ", token);
@@ -80,12 +67,9 @@ export const bootstrapLogin = () => async (dispatch, getState) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log("response: ", response.data);
-
-    //   console.log("user profile loaded automatically", userProfile);
-    //   dispatch(saveUserData(jwt, userProfile));
-    // } else {
-    //   console.log("no token stored in localstorage");
-    // }
+    console.log("response: ", response.data); // need token
+    dispatch(loginSuccess(response.data));
+  } else {
+    console.log("no token stored in localstorage");
   }
 };

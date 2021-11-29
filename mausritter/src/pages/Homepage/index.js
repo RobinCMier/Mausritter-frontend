@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 //comp and action imports
-import { fetchAll } from "../../store/sheets/actions";
-import { selectUserFull } from "../../store/sheets/selectors";
 import { selectToken } from "../../store/user/selectors";
+import { selectUserFull } from "../../store/user/selectors";
 /*TO DO
 create store for sheets
 create a thunk first fetching the userId with getState from user reducer
@@ -21,10 +20,6 @@ export default function Homepage() {
   const token = useSelector(selectToken);
   const navigate = useNavigate();
   const userFull = useSelector(selectUserFull);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchAll);
-  }, [dispatch]);
   const sheets = userFull.sheets;
   //recycle this for every page:
   useEffect(() => {
