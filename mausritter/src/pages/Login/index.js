@@ -40,7 +40,7 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <main className="container">
       <div>
         <form onSubmit={submitForm}>
           <p>
@@ -73,6 +73,6 @@ export default function Login() {
           <button>Click here to sign up</button>{" "}
         </Link>
       </div>
-    </div>
+    </main>
   );
 }

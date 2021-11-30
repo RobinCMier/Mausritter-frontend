@@ -41,7 +41,7 @@ export default function CreateCharacter() {
   }
 
   return (
-    <div>
+    <main className="container">
       <div>
         <Link to="/home">
           <button style={{ backgroundColor: "#b1f59d", fontSize: 20 }}>
@@ -128,6 +128,6 @@ export default function CreateCharacter() {
           </button>
         </form>
       </div>
-    </div>
+    </main>
   );
 }

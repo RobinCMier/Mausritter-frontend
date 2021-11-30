@@ -21,7 +21,7 @@ export default function Login() {
 
   useEffect(() => {
     if (token !== null) {
-      navigate("/");
+      navigate("/home");
     }
   }, [token]);
 
@@ -33,7 +33,7 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <main className="container">
       <div>
         <form onSubmit={submitForm}>
           <p>
@@ -72,6 +72,6 @@ export default function Login() {
           </p>
         </form>
       </div>
-    </div>
+    </main>
   );
 }

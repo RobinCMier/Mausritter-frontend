@@ -30,47 +30,49 @@ export default function Homepage() {
   // console.log("this is sheets: ", sheets);
 
   return (
-    <div>
-      <h1>Welcome back, {user.name}</h1>
-      <Link to="/sheet/create">
-        <button
-          style={{
-            backgroundColor: "#b1f59d",
-            fontSize: 30,
-          }}
-        >
-          Create a new character!
-        </button>
-      </Link>
-      <h3>Here are your created character sheets:</h3>
-      {!user ? (
-        <div>Loading your account...</div>
-      ) : (
-        <div>
-          {!sheets ? (
-            <div>Loading...</div>
-          ) : (
-            <div>
-              {sheets.map((sheet) => {
-                return (
-                  <div key={sheet.id}>
-                    <Link to={`/sheet/${sheet.charName}`}>
-                      <button
-                        style={{
-                          backgroundColor: `${sheet.charColor}`,
-                          fontSize: 30,
-                        }}
-                      >
-                        {sheet.charName}
-                      </button>
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      )}
-    </div>
+    <main className="container">
+      <div>
+        <h1>Welcome back, {user.name}</h1>
+        <Link to="/sheet/create">
+          <button
+            style={{
+              backgroundColor: "#b1f59d",
+              fontSize: 30,
+            }}
+          >
+            Create a new character!
+          </button>
+        </Link>
+        <h3>Here are your created character sheets:</h3>
+        {!user ? (
+          <div>Loading your account...</div>
+        ) : (
+          <div>
+            {!sheets ? (
+              <div>Loading...</div>
+            ) : (
+              <div>
+                {sheets.map((sheet) => {
+                  return (
+                    <div key={sheet.id}>
+                      <Link to={`/sheet/${sheet.charName}`}>
+                        <button
+                          style={{
+                            backgroundColor: `${sheet.charColor}`,
+                            fontSize: 30,
+                          }}
+                        >
+                          {sheet.charName}
+                        </button>
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </main>
   );
 }

@@ -57,7 +57,7 @@ export default function Charactersheet() {
 
   */
   return (
-    <div>
+    <main className="container">
       <div>
         <Link to="/home">
           <button style={{ backgroundColor: "#b1f59d", fontSize: 20 }}>
@@ -80,6 +80,6 @@ export default function Charactersheet() {
           </div>
         )}
       </div>
-    </div>
+    </main>
   );
 }
