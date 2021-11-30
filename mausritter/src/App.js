@@ -23,18 +23,15 @@ function App() {
   useEffect(() => {
     dispatch(bootstrapLogin());
   }, [dispatch]);
-  /*
-  there needs to be a useEffect that upon rerendering checks for the token that should 
-  be in local storage, then use that token to fetch data of user from store. 
-  Problem: upon refreshing, the store wipes. 
-  */
 
   return (
     <div
       style={{
+        backgroundColor: "#dfcf8a",
         backgroundImage: `url(${background})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
+        backgroundPosition: "center",
         height: "100vh",
         width: "100vw",
       }}

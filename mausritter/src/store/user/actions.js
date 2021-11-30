@@ -10,7 +10,7 @@ const loginSuccess = (userWithToken) => {
     payload: userWithToken,
   };
 };
-//log out ALSO REMOVE THE TOKEN!!!!!
+//log out and remove token
 export const logOut = () => ({ type: "user/logOut" });
 //update sheet after edit
 const sheetUpdate = (sheetData) => {
@@ -69,13 +69,22 @@ export const bootstrapLogin = () => async (dispatch, getState) => {
   // console.log("token is: ", token);
   if (token) {
     // make /me call
-    const response = await axios.get(`${apiUrl}/auth/me`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    // console.log("response: ", response.data);
-    dispatch(loginSuccess(response.data));
+    try {
+      const response = await axios.get(`${apiUrl}/auth/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      // console.log("response: ", response.data);
+      dispatch(loginSuccess(response.data));
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.message);
+      } else {
+        console.log(error);
+      }
+      dispatch(logOut());
+    }
   } else {
     console.log("no token stored in localstorage");
   }
@@ -115,9 +124,8 @@ export const createSheet = (fullSheet) => {
   };
 };
 
-//DELETE A SHEET
-//need: userId and sheetId in url
-// 4000/sheet/:userId/delete/:sheetid
+//delete a sheet
+
 export const deleteSheet = (sheetId) => {
   return async (dispatch, getState) => {
     const userId = getState().user.id;
