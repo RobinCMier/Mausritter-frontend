@@ -34,10 +34,10 @@ export default function Charactersheet() {
 
   useEffect(() => {
     setSheet(rendersheet);
-  }, [rendersheet, sheet]);
+  }, [rendersheet]);
 
   const onChangeHandler = (event) => {
-    // console.log("This is the event: ", event.target);
+    console.log("This is the event: ", event.target);
     setSheet({ ...sheet, [event.target.name]: event.target.value });
   };
   const toggleEdit = () => {
@@ -50,20 +50,19 @@ export default function Charactersheet() {
     console.log("deleting character!", id);
     dispatch(deleteSheet(id));
   };
-  /*DELETE CHAR
-  -onclick
-  - dispatch action to delete the story
-  - find a way to then go to homepage, which should be updated. (!sheet?navigate maybe?)
 
-  */
   return (
-    <main className="container">
+    <main className="wrapper">
       <div>
-        <Link to="/home">
-          <button style={{ backgroundColor: "#b1f59d", fontSize: 20 }}>
-            Back to homepage
-          </button>
-        </Link>
+        <div className="characterSheetNav">
+          <Link to="/home">
+            <button style={{ backgroundColor: "#b1f59d", fontSize: 20 }}>
+              Back to homepage
+            </button>
+          </Link>
+          <button>roll dice placeholder</button>
+        </div>
+
         {!sheet ? (
           <div>Loading sheet...</div>
         ) : (

@@ -41,7 +41,7 @@ export default function CreateCharacter() {
   }
 
   return (
-    <main className="container">
+    <main className="wrapper">
       <div>
         <Link to="/home">
           <button style={{ backgroundColor: "#b1f59d", fontSize: 20 }}>

@@ -26,14 +26,9 @@ function App() {
 
   return (
     <div
+      className="background"
       style={{
-        backgroundColor: "#dfcf8a",
         backgroundImage: `url(${background})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "contain",
-        backgroundPosition: "center",
-        height: "100vh",
-        width: "100vw",
       }}
     >
       <div>
@@ -44,9 +39,7 @@ function App() {
           >
             Log out
           </button>
-        ) : (
-          <></>
-        )}
+        ) : null}
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/sheet/:name" element={<Charactersheet />} />

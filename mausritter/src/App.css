@@ -7,4 +7,27 @@
 [ ] container response to size of content (or scrollbar)
 */
 
-/*CONTAINER*/
+/*BACKGROUND*/
+.background {
+  background-color: #dfcf8a;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+}
+/*WRAPPER */
+.wrapper {
+  width: 50%;
+  margin: 0 auto;
+  background-color: #d89e75;
+  padding: 20px;
+  border: 5px solid #a55f2d;
+  border-radius: 15px;
+}
+/*CHARACTERSHEET NAVBAR*/
+.characterSheetNav {
+  display: flex;
+  justify-content: space-between;
+}
+/*NONCHAR BUTTONS*/

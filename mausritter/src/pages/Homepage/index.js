@@ -30,7 +30,7 @@ export default function Homepage() {
   // console.log("this is sheets: ", sheets);
 
   return (
-    <main className="container">
+    <main className="wrapper">
       <div>
         <h1>Welcome back, {user.name}</h1>
         <Link to="/sheet/create">

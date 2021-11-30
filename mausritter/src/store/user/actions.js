@@ -52,7 +52,9 @@ export const signUp = (name, email, password) => {
         email,
         password,
       });
-      console.log("response.data is ", response.data);
+      // console.log("response.data is ", response.data.token);
+      const token = response.data.token;
+      localStorage.setItem("token", token);
       dispatch(loginSuccess(response.data));
     } catch (error) {
       if (error.response) {

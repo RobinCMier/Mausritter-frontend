@@ -24,6 +24,8 @@ export default function Login() {
       navigate("/home");
     }
   }, [token]);
+  //either automatically put token in local storage / take it from storage
+  //or refer back to login
 
   function submitForm(event) {
     console.log("hi from submitForm");
@@ -33,7 +35,7 @@ export default function Login() {
   }
 
   return (
-    <main className="container">
+    <main className="wrapper">
       <div>
         <form onSubmit={submitForm}>
           <p>
@@ -71,6 +73,10 @@ export default function Login() {
             <button type="submit">Sign up!</button>
           </p>
         </form>
+        <Link to="/">
+          {" "}
+          <button>Go back to login page</button>{" "}
+        </Link>
       </div>
     </main>
   );

@@ -40,7 +40,7 @@ export default function Login() {
   }
 
   return (
-    <main className="container">
+    <main className="wrapper">
       <div>
         <form onSubmit={submitForm}>
           <p>

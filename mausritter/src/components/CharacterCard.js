@@ -3,6 +3,7 @@
 //function
 export default function CharacterCard(props) {
   const { onChangeHandler, readOnly } = props;
+  //conditional rendering: if readonly false then input, if true then text.
   return (
     <div>
       <div>
@@ -60,31 +61,37 @@ export default function CharacterCard(props) {
           />
         </div>
         <div style={{ display: "flex" }}>
-          <ul>
-            <li>Strength:</li>
-            <input
-              type="number"
-              value={props.sheet.str}
-              name="str"
-              onChange={(event) => onChangeHandler(event)}
-              readOnly={readOnly}
-            />
-            <li>Dexterity:</li>
-            <input
-              type="number"
-              value={props.sheet.dex}
-              name="dex"
-              onChange={(event) => onChangeHandler(event)}
-              readOnly={readOnly}
-            />
-            <li>Willpower: </li>
-            <input
-              type="number"
-              value={props.sheet.will}
-              name="will"
-              onChange={(event) => onChangeHandler(event)}
-              readOnly={readOnly}
-            />
+          <ul style={{ listStyle: "none" }}>
+            <li>
+              Strength:
+              <input
+                type="number"
+                value={props.sheet.str}
+                name="str"
+                onChange={(event) => onChangeHandler(event)}
+                readOnly={readOnly}
+              />
+            </li>
+            <li>
+              Dexterity:
+              <input
+                type="number"
+                value={props.sheet.dex}
+                name="dex"
+                onChange={(event) => onChangeHandler(event)}
+                readOnly={readOnly}
+              />
+            </li>
+            <li>
+              Willpower:
+              <input
+                type="number"
+                value={props.sheet.will}
+                name="will"
+                onChange={(event) => onChangeHandler(event)}
+                readOnly={readOnly}
+              />
+            </li>
           </ul>
         </div>
       </div>
