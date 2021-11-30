@@ -34,12 +34,7 @@ export default function Homepage() {
       <div>
         <h1>Welcome back, {user.name}</h1>
         <Link to="/sheet/create">
-          <button
-            style={{
-              backgroundColor: "#b1f59d",
-              fontSize: 30,
-            }}
-          >
+          <button className="regButton" style={{ fontSize: 30 }}>
             Create a new character!
           </button>
         </Link>
@@ -57,6 +52,7 @@ export default function Homepage() {
                     <div key={sheet.id}>
                       <Link to={`/sheet/${sheet.charName}`}>
                         <button
+                          className="regButton"
                           style={{
                             backgroundColor: `${sheet.charColor}`,
                             fontSize: 30,

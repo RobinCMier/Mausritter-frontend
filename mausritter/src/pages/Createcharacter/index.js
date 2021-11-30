@@ -44,9 +44,7 @@ export default function CreateCharacter() {
     <main className="wrapper">
       <div>
         <Link to="/home">
-          <button style={{ backgroundColor: "#b1f59d", fontSize: 20 }}>
-            Back to Homepage
-          </button>
+          <button className="regButton">Back to Homepage</button>
         </Link>
 
         <form onSubmit={handleSubmit}>
@@ -96,34 +94,37 @@ export default function CreateCharacter() {
             />
           </div>
           <div style={{ display: "flex" }}>
-            <ul>
-              <li>Strength:</li>
-              <input
-                type="number"
-                value={str}
-                name="str"
-                onChange={(e) => setStr(e.target.value)}
-              />
-              <li>Dexterity:</li>
-              <input
-                type="number"
-                value={dex}
-                name="dex"
-                onChange={(e) => setDex(e.target.value)}
-              />
-              <li>Willpower: </li>
-              <input
-                type="number"
-                value={will}
-                name="will"
-                onChange={(e) => setWill(e.target.value)}
-              />
+            <ul style={{ listStyle: "none" }}>
+              <li>
+                Strength:
+                <input
+                  type="number"
+                  value={str}
+                  name="str"
+                  onChange={(e) => setStr(e.target.value)}
+                />
+              </li>
+              <li>
+                Dexterity:
+                <input
+                  type="number"
+                  value={dex}
+                  name="dex"
+                  onChange={(e) => setDex(e.target.value)}
+                />
+              </li>
+              <li>
+                Willpower:
+                <input
+                  type="number"
+                  value={will}
+                  name="will"
+                  onChange={(e) => setWill(e.target.value)}
+                />
+              </li>
             </ul>
           </div>
-          <button
-            type="submit"
-            style={{ backgroundColor: "#b1f59d", fontSize: 20 }}
-          >
+          <button type="submit" className="regButton">
             Submit
           </button>
         </form>

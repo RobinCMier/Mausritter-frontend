@@ -31,3 +31,9 @@
   justify-content: space-between;
 }
 /*NONCHAR BUTTONS*/
+
+.regButton {
+  background-color: #b1f59d;
+  border-radius: 12px;
+  padding: 5px 12px;
+}

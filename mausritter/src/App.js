@@ -33,10 +33,7 @@ function App() {
     >
       <div>
         {token ? (
-          <button
-            style={{ backgroundColor: "#b1f59d", fontSize: 20 }}
-            onClick={() => dispatch(logOut())}
-          >
+          <button className="regButton" onClick={() => dispatch(logOut())}>
             Log out
           </button>
         ) : null}

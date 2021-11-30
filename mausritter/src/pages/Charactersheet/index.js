@@ -56,24 +56,28 @@ export default function Charactersheet() {
       <div>
         <div className="characterSheetNav">
           <Link to="/home">
-            <button style={{ backgroundColor: "#b1f59d", fontSize: 20 }}>
-              Back to homepage
-            </button>
+            <button className="regButton">Back to homepage</button>
           </Link>
-          <button>roll dice placeholder</button>
+          <button className="regButton">roll dice placeholder</button>
         </div>
 
         {!sheet ? (
           <div>Loading sheet...</div>
         ) : (
           <div>
-            <button onClick={toggleEdit}>Edit your sheet!</button>
+            <button className="regButton" onClick={toggleEdit}>
+              Edit your sheet!
+            </button>
             <CharacterCard
               readOnly={readOnly}
               sheet={sheet}
               onChangeHandler={onChangeHandler}
             />
-            <button onClick={() => onDelete(sheet.id)}>
+            <button
+              className="regButton"
+              style={{ backgroundColor: "#ff4d4d" }}
+              onClick={() => onDelete(sheet.id)}
+            >
               Delete your character
             </button>
           </div>

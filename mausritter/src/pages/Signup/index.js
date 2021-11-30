@@ -70,12 +70,14 @@ export default function Login() {
             </label>
           </p>
           <p>
-            <button type="submit">Sign up!</button>
+            <button className="regButton" type="submit">
+              Sign up!
+            </button>
           </p>
         </form>
         <Link to="/">
           {" "}
-          <button>Go back to login page</button>{" "}
+          <button className="regButton">Go back to login page</button>{" "}
         </Link>
       </div>
     </main>

@@ -65,12 +65,14 @@ export default function Login() {
             </label>
           </p>
           <p>
-            <button type="submit">Log in</button>
+            <button className="regButton" type="submit">
+              Log in
+            </button>
           </p>
         </form>
         <Link to="/signup">
           {" "}
-          <button>Click here to sign up</button>{" "}
+          <button className="regButton">Click here to sign up</button>{" "}
         </Link>
       </div>
     </main>
