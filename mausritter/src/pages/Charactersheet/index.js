@@ -65,9 +65,13 @@ export default function Charactersheet() {
           <div>Loading sheet...</div>
         ) : (
           <div>
-            <button className="regButton" onClick={toggleEdit}>
-              Edit your sheet!
-            </button>
+            <div style={{ display: "flex" }}>
+              <label class="switch">
+                <input type="checkbox" onClick={toggleEdit} />
+                <span class="slider round"></span>
+              </label>
+              {readOnly ? <h3>Edit: off</h3> : <h3>Edit: on</h3>}
+            </div>
             <CharacterCard
               readOnly={readOnly}
               sheet={sheet}
@@ -75,7 +79,7 @@ export default function Charactersheet() {
             />
             <button
               className="regButton"
-              style={{ backgroundColor: "#ff4d4d" }}
+              style={{ backgroundColor: "#e34b4b" }}
               onClick={() => onDelete(sheet.id)}
             >
               Delete your character

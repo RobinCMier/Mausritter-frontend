@@ -112,6 +112,33 @@ export const createSheet = (fullSheet) => {
   return async (dispatch, getState) => {
     const userId = getState().user.id;
     // console.log("user id is: ", userId);
+    const {
+      charName,
+      charColor,
+      level,
+      charBackground,
+      pips,
+      currentHP,
+      maxHP,
+      str,
+      dex,
+      will,
+    } = fullSheet;
+    if (
+      !charName ||
+      !level ||
+      !charBackground ||
+      !pips ||
+      !maxHP ||
+      !str ||
+      !dex ||
+      !will
+    ) {
+      console.log(
+        "You can edit everything later, but please fill it in completely!"
+      );
+      return;
+    }
     try {
       const response = await axios.post(`${apiUrl}/sheet/postsheet`, {
         fullSheet, //is an object with all the values, prolly need to extract in backend.
