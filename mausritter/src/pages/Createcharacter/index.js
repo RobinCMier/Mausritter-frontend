@@ -37,6 +37,9 @@ export default function CreateCharacter() {
     };
     console.log("fullSheet is: ", fullSheet); //object
     dispatch(createSheet(fullSheet));
+    //add logic here that makes app check if creating was succcess
+    //if not success, show message instead, and do not navigate
+    // check group project & copypaste from there
     navigate("/");
   }
 
