@@ -47,7 +47,7 @@ export default function Charactersheet() {
     }
   };
   const onDelete = (id) => {
-    console.log("deleting character!", id);
+    // console.log("deleting character!", id);
     dispatch(deleteSheet(id));
   };
 
@@ -66,13 +66,13 @@ export default function Charactersheet() {
         ) : (
           <div>
             <div style={{ display: "flex" }}>
+              {readOnly ? <h3>Edit: off</h3> : <h3>Edit: on</h3>}
+            </div>
+            <div style={{ display: "flex" }}>
               <label class="switch">
                 <input type="checkbox" onClick={toggleEdit} />
                 <span class="slider round"></span>
               </label>
-              <div style={{ display: "flex" }}>
-                {readOnly ? <h3>Edit: off</h3> : <h3>Edit: on</h3>}
-              </div>
             </div>
             <CharacterCard
               readOnly={readOnly}

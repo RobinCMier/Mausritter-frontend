@@ -37,7 +37,7 @@ export default function CreateCharacter() {
     };
     console.log("fullSheet is: ", fullSheet); //object
     dispatch(createSheet(fullSheet));
-    // navigate("/");
+    navigate("/");
   }
 
   return (
