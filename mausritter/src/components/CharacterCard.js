@@ -9,30 +9,42 @@ export default function CharacterCard(props) {
       {readOnly ? (
         <div>
           <div>
-            <h1 style={{ color: `${props.sheet.charColor}` }}>
+            <h1
+              className="charName"
+              style={{ color: `${props.sheet.charColor}` }}
+            >
               {props.sheet.charName}
             </h1>
             <div style={{ display: "flex" }}>
-              <h3>Level: {props.sheet.level}</h3>
+              <p className="statText">Level:</p> {props.sheet.level}
             </div>
             <div style={{ display: "flex" }}>
-              <h3>Background: {props.sheet.charBackground}</h3>
+              <p className="statText">Background: </p>
+              {props.sheet.charBackground}
             </div>
             <div style={{ display: "flex" }}>
-              <p>Pips:{props.sheet.pips}</p>
+              <p className="statText">Pips:</p>
+              {props.sheet.pips}
             </div>
             <div style={{ display: "flex" }}>
-              <p>Current HP :{props.sheet.currentHP} </p>
+              <p className="statText">Current HP :</p>
+              {props.sheet.currentHP}
             </div>
             <div style={{ display: "flex" }}>
-              <p>Max HP: {props.sheet.maxHP} </p>
+              <p className="statText">Max HP: </p>
+              {props.sheet.maxHP}
             </div>
             <div style={{ display: "flex" }}>
-              <ul style={{ listStyle: "none" }}>
-                <li>Strength: {props.sheet.str}</li>
-                <li>Dexterity:{props.sheet.dex}</li>
-                <li>Willpower:{props.sheet.will}</li>
-              </ul>
+              <p className="statText">Strength: </p>
+              {props.sheet.str}
+            </div>
+            <div style={{ display: "flex" }}>
+              <p className="statText">Dexterity: </p>
+              {props.sheet.dex}
+            </div>
+            <div style={{ display: "flex" }}>
+              <p className="statText">Willpower: </p>
+              {props.sheet.will}
             </div>
           </div>
         </div>
