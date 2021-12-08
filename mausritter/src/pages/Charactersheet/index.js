@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 //component imports
 import { selectToken } from "../../store/user/selectors";
-import { selectSheetByName, selectSheets } from "../../store/user/selectors";
+import { selectSheets } from "../../store/user/selectors";
 import CharacterCard from "../../components/CharacterCard";
 import { updateSheet, deleteSheet } from "../../store/user/actions";
 
@@ -14,7 +14,7 @@ import { updateSheet, deleteSheet } from "../../store/user/actions";
 export default function Charactersheet() {
   const dispatch = useDispatch();
   const [readOnly, setReadOnly] = useState(true);
-  console.log("What is readOnly? ", readOnly);
+  // console.log("What is readOnly? ", readOnly);
   const navigate = useNavigate();
   const token = useSelector(selectToken);
   const testSheet = useSelector(selectSheets);
@@ -27,7 +27,7 @@ export default function Charactersheet() {
 
   const [sheet, setSheet] = useState(rendersheet); //this is too fast
   // console.log("character name is: ", charName);
-  console.log("sheet is: ", typeof sheet, sheet);
+  // console.log("sheet is: ", typeof sheet, sheet);
   if (!sheet) {
     navigate("/");
   }
@@ -37,13 +37,13 @@ export default function Charactersheet() {
   }, [rendersheet]);
 
   const onChangeHandler = (event) => {
-    console.log("This is the event: ", event.target);
+    // console.log("This is the event: ", event.target);
     setSheet({ ...sheet, [event.target.name]: event.target.value });
   };
   const toggleEdit = () => {
     setReadOnly(!readOnly);
     if (readOnly !== true) {
-      dispatch(updateSheet(sheet)); //add sheetId
+      dispatch(updateSheet(sheet));
     }
   };
   const onDelete = (id) => {

@@ -1,13 +1,9 @@
-/*TO DO: 
-[V] all the interface is in a container in the middle of the screen 
-[V] background colour
-[V] background image is centered
-[V] edit button is a slider
-[ ] place the buttons (logout, back to homepage etc) at the right places
-[ ] container response to size of content (or scrollbar)
-*/
-
-/*BACKGROUND*/
+/*FONT*/
+@import url("https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap");
+body {
+  font-family: "Fuzzy Bubbles", cursive;
+}
+/*BACKGROUND */
 .background {
   background-color: #dfcf8a;
   background-repeat: no-repeat;
@@ -37,6 +33,8 @@
   border-radius: 12px;
   padding: 5px 12px;
   margin: 20px 10px;
+  font-family: "Fuzzy Bubbles", cursive;
+  border-color: #a55f2d;
 }
 
 /*EDIT TOGGLE*/
