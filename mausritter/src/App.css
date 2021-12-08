@@ -36,6 +36,7 @@
   background-color: #b1f59d;
   border-radius: 12px;
   padding: 5px 12px;
+  margin: 20px 10px;
 }
 
 /*EDIT TOGGLE*/
@@ -44,6 +45,7 @@
   display: inline-block;
   width: 60px;
   height: 34px;
+  margin: 10px 10px;
 }
 /* Hide default HTML checkbox */
 .switch input {

@@ -70,7 +70,9 @@ export default function Charactersheet() {
                 <input type="checkbox" onClick={toggleEdit} />
                 <span class="slider round"></span>
               </label>
-              {readOnly ? <h3>Edit: off</h3> : <h3>Edit: on</h3>}
+              <div style={{ display: "flex" }}>
+                {readOnly ? <h3>Edit: off</h3> : <h3>Edit: on</h3>}
+              </div>
             </div>
             <CharacterCard
               readOnly={readOnly}
